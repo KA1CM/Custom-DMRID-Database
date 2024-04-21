@@ -352,7 +352,7 @@ Sub ExportToCSV()
     
     ' Save the worksheet as CSV on desktop
     ThisWorkbook.Sheets("user").Copy
-    ActiveWorkbook.SaveAs FileName:=DesktopFilePath, FileFormat:=xlCSV, CreateBackup:=False
+    ActiveWorkbook.SaveAs Filename:=DesktopFilePath, FileFormat:=xlCSV, CreateBackup:=False
     ActiveWorkbook.Close SaveChanges:=False
     
     ' Define the workbook file path
@@ -361,7 +361,7 @@ Sub ExportToCSV()
         
         ' Save the worksheet as CSV in workbook's folder
         ThisWorkbook.Sheets("user").Copy
-        ActiveWorkbook.SaveAs FileName:=WorkbookFilePath, FileFormat:=xlCSV, CreateBackup:=False
+        ActiveWorkbook.SaveAs Filename:=WorkbookFilePath, FileFormat:=xlCSV, CreateBackup:=False
         ActiveWorkbook.Close SaveChanges:=False
     Else
         MsgBox "Workbook has not been saved yet. Please save the workbook and run the macro again.", vbExclamation
