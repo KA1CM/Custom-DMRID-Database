@@ -188,7 +188,7 @@ Sub DMRID()
                         ' If the state is not in the list, do nothing or handle differently
                 End Select
                 If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "e").Value = "Invalid City"
+                    ws.Cells(i, "e").Value = "Inv.City"
                 End If
                 'if city name is longer than 18 charecters make it 18
                 'why 18? Because .?? is 3 charecters and 18+3 = 21
