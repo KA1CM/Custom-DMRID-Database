@@ -80,6 +80,8 @@ Sub DMRID()
         
         ' processing data based on the value in column G
         Select Case countryName
+        
+            'For US
             Case "United States"
                 Select Case stateName
                     Case "Alabama"
@@ -198,6 +200,8 @@ Sub DMRID()
                 If Not IsEmpty(ws.Cells(i, "e")) Then
                     ws.Cells(i, "G").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value
                 End If
+                
+            'For UK
             Case "United Kingdom"
                 ws.Cells(i, "G").Value = "GB"
                 If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
@@ -213,6 +217,8 @@ Sub DMRID()
                 ElseIf (Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "f")) Then
                     ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "G").Value
                 End If
+                
+            'For Thailand
             Case "Thailand"
                 ws.Cells(i, "G").Value = "TH"
                 If Not IsEmpty(ws.Cells(i, "f")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "f")) Then
@@ -221,8 +227,12 @@ Sub DMRID()
                 If Not IsEmpty(ws.Cells(i, "f")) Then
                 ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
                 End If
+                
+            'For Bosnia Hercegovina
             Case "Bosnia and Hercegovina"
                 ws.Cells(i, "G").Value = "Bosnia.Hercegovina"
+                
+            'For Korea
             Case "Korea Republic of"
                 ws.Cells(i, "G").Value = "Korea"
                 If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
@@ -238,6 +248,8 @@ Sub DMRID()
                 ElseIf (Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "f")) Then
                     ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
                 End If
+                
+            'For Canada
             Case "Canada"
                 ws.Cells(i, "G").Value = "CAN"
                 Select Case stateName
