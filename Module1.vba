@@ -348,6 +348,7 @@ Sub ExportToCSV()
     Dim DesktopFilePath As String
     Dim WorkbookFilePath As String
     
+    Application.ScreenUpdating = False
     ' Save the workbook
     ThisWorkbook.Save
     
@@ -368,17 +369,20 @@ Sub ExportToCSV()
     ActiveWorkbook.Close SaveChanges:=False
     
     ' Define the workbook file path
-    If ThisWorkbook.Path <> "" Then
-        WorkbookFilePath = ThisWorkbook.Path & "\" & MyFileName
-        
-        ' Save the worksheet as CSV in workbook's folder
-        ThisWorkbook.Sheets("user").Copy
-        ActiveWorkbook.SaveAs Filename:=WorkbookFilePath, FileFormat:=xlCSV, CreateBackup:=False
-        ActiveWorkbook.Close SaveChanges:=False
-    Else
-        MsgBox "Workbook has not been saved yet. Please save the workbook and run the macro again.", vbExclamation
-    End If
+    ' If ThisWorkbook.Path <> "" Then
+    WorkbookFilePath = ThisWorkbook.Path & "\" & MyFileName
     
+     ' Check if the file already exists on this folder, and delete it if it does
+    If Dir(WorkbookFilePath) <> "" Then
+        Kill WorkbookFilePath
+    End If
+        
+    ' Save the worksheet as CSV in workbook's folder
+    ThisWorkbook.Sheets("user").Copy
+    ActiveWorkbook.SaveAs Filename:=WorkbookFilePath, FileFormat:=xlCSV, CreateBackup:=False
+    ActiveWorkbook.Close SaveChanges:=False
+
+    Application.ScreenUpdating = True
     Exit Sub
     
 ErrorHandler:
