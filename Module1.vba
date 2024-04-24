@@ -196,15 +196,60 @@ Sub DMRID()
                         ' If the state is not in the list, do nothing or handle differently
                 End Select
                 
-                'if city name is longer than 18 charecters make it 18
-                'why 18? Because .?? is 3 charecters and 18+3 = 21
-                If Len(cityName) > 18 Then
-                    cityName = Left(cityName, 18)
-                End If
                 If cityName <> "" Then
+                    'if city name is longer than 18 charecters make it 18
+                    'why 18? Because .?? is 3 charecters and 18+3 = 21
+                    If Len(cityName) > 18 Then
+                        cityName = Left(cityName, 18)
+                    End If
                     ws.Cells(i, "G").Value = cityName + "." + stateName
                 Else
                     ws.Cells(i, "G").Value = stateName
+                End If
+                
+            'For Canada
+            Case "Canada"
+                countryName = "CAN"
+                Select Case stateName
+                    Case "Alberta"
+                        stateName = "AB"
+                    Case "British Columbia"
+                        stateName = "BC"
+                    Case "Manitoba"
+                        stateName = "MB"
+                    Case "New Brunswick"
+                        stateName = "NB"
+                    Case "Newfoundland"
+                        stateName = "NL"
+                    Case "Nova Scotia"
+                        stateName = "NS"
+                    Case "Ontario"
+                        stateName = "ON"
+                    Case "Prince Edward Island"
+                        stateName = "PE"
+                    Case "Quebec"
+                        stateName = "QC"
+                    Case "Saskatchewan"
+                        stateName = "SK"
+                    Case "Northwest Territories"
+                        stateName = "NT"
+                    Case "Nunavut"
+                        stateName = "NU"
+                    Case "Yukon"
+                        stateName = "YT"
+                    Case Else
+                        ' If the state is not in the list, do nothing or handle differently
+                End Select
+                
+                If cityName <> "" Then
+                    'if the city name is longer than 14 charecters make it 14
+                    'why 14? Because .??.CAN is 7 charecters and 14+7 = 21
+                    If Len(cityName) > 14 Then
+                        cityName = Left(cityName, 14)
+                    End If
+                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                Else
+                    ws.Cells(i, "G").Value = stateName + "." + countryName
                 End If
                 
             'For UK
@@ -248,47 +293,6 @@ Sub DMRID()
                 Else
                     ws.Cells(i, "g").Value = countryName
                 End If
-                
-            'For Canada
-            Case "Canada"
-                countryName = "CAN"
-                Select Case stateName
-                    Case "Alberta"
-                        stateName = "AB"
-                    Case "British Columbia"
-                        stateName = "BC"
-                    Case "Manitoba"
-                        stateName = "MB"
-                    Case "New Brunswick"
-                        stateName = "NB"
-                    Case "Newfoundland"
-                        stateName = "NL"
-                    Case "Nova Scotia"
-                        stateName = "NS"
-                    Case "Ontario"
-                        stateName = "ON"
-                    Case "Prince Edward Island"
-                        stateName = "PE"
-                    Case "Quebec"
-                        stateName = "QC"
-                    Case "Saskatchewan"
-                        stateName = "SK"
-                    Case "Northwest Territories"
-                        stateName = "NT"
-                    Case "Nunavut"
-                        stateName = "NU"
-                    Case "Yukon"
-                        stateName = "YT"
-                    Case Else
-                        ' If the state is not in the list, do nothing or handle differently
-                End Select
-                'if the city name is longer than 14 charecters make it 14
-                'why 14? Because .??.CAN is 7 charecters and 14+7 = 21
-                If Len(cityName) > 14 Then
-                    cityName = Left(cityName, 14)
-                End If
-                ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
-
             
             'for the rest of the world
             Case Else
