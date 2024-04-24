@@ -53,6 +53,7 @@ Sub DMRID()
     Dim i As Long
     Dim countryName As String
     Dim stateName As String
+    Dim cityName As String
     
     Application.ScreenUpdating = False
 
@@ -80,6 +81,8 @@ Sub DMRID()
         If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
             ws.Cells(i, "e").Value = "Inv.City"
         End If
+        cityName = ws.Cells(i, "e").Value
+        
         
         ' processing data based on the value in column G
         Select Case countryName
@@ -88,138 +91,144 @@ Sub DMRID()
             Case "United States"
                 Select Case stateName
                     Case "Alabama"
-                        ws.Cells(i, "F").Value = "AL"
+                        stateName = "AL"
                     Case "Alaska"
-                        ws.Cells(i, "F").Value = "AK"
+                        stateName = "AK"
                     Case "Arizona"
-                        ws.Cells(i, "F").Value = "AZ"
+                        stateName = "AZ"
                     Case "Arkansas"
-                        ws.Cells(i, "F").Value = "AR"
+                        stateName = "AR"
                     Case "California"
-                        ws.Cells(i, "F").Value = "CA"
+                        stateName = "CA"
                     Case "Colorado"
-                        ws.Cells(i, "F").Value = "CO"
+                        stateName = "CO"
                     Case "Connecticut"
-                        ws.Cells(i, "F").Value = "CT"
+                        stateName = "CT"
                     Case "District of Columbia"
-                        ws.Cells(i, "F").Value = "DC"
+                        stateName = "DC"
                     Case "Delaware"
-                        ws.Cells(i, "F").Value = "DE"
+                        stateName = "DE"
                     Case "Florida"
-                        ws.Cells(i, "F").Value = "FL"
+                        stateName = "FL"
                     Case "Georgia"
-                        ws.Cells(i, "F").Value = "GA"
+                        stateName = "GA"
                     Case "Hawaii"
-                        ws.Cells(i, "F").Value = "HI"
+                        stateName = "HI"
                     Case "Idaho"
-                        ws.Cells(i, "F").Value = "ID"
+                        stateName = "ID"
                     Case "Illinois"
-                        ws.Cells(i, "F").Value = "IL"
+                        stateName = "IL"
                     Case "Indiana"
-                        ws.Cells(i, "F").Value = "IN"
+                        stateName = "IN"
                     Case "Iowa"
-                        ws.Cells(i, "F").Value = "IA"
+                        stateName = "IA"
                     Case "Kansas"
-                        ws.Cells(i, "F").Value = "KS"
+                        stateName = "KS"
                     Case "Kentucky"
-                        ws.Cells(i, "F").Value = "KY"
+                        stateName = "KY"
                     Case "Louisiana"
-                        ws.Cells(i, "F").Value = "LA"
+                        stateName = "LA"
                     Case "Maine"
-                        ws.Cells(i, "F").Value = "ME"
+                        stateName = "ME"
                     Case "Maryland"
-                        ws.Cells(i, "F").Value = "MD"
+                        stateName = "MD"
                     Case "Massachusetts"
-                        ws.Cells(i, "F").Value = "MA"
+                        stateName = "MA"
                     Case "Michigan"
-                        ws.Cells(i, "F").Value = "MI"
+                        stateName = "MI"
                     Case "Minnesota"
-                        ws.Cells(i, "F").Value = "MN"
+                        stateName = "MN"
                     Case "Mississippi"
-                        ws.Cells(i, "F").Value = "MS"
+                        stateName = "MS"
                     Case "Missouri"
-                        ws.Cells(i, "F").Value = "MO"
+                        stateName = "MO"
                     Case "Montana"
-                        ws.Cells(i, "F").Value = "MT"
+                        stateName = "MT"
                     Case "Nebraska"
-                        ws.Cells(i, "F").Value = "NE"
+                        stateName = "NE"
                     Case "Nevada"
-                        ws.Cells(i, "F").Value = "NV"
+                        stateName = "NV"
                     Case "New Hampshire"
-                        ws.Cells(i, "F").Value = "NH"
+                        stateName = "NH"
                     Case "New Jersey"
-                        ws.Cells(i, "F").Value = "NJ"
+                        stateName = "NJ"
                     Case "New Mexico"
-                        ws.Cells(i, "F").Value = "NM"
+                        stateName = "NM"
                     Case "New York"
-                        ws.Cells(i, "F").Value = "NY"
+                        stateName = "NY"
                     Case "North Carolina"
-                        ws.Cells(i, "F").Value = "NC"
+                        stateName = "NC"
                     Case "North Dakota"
-                        ws.Cells(i, "F").Value = "ND"
+                        stateName = "ND"
                     Case "Ohio"
-                        ws.Cells(i, "F").Value = "OH"
+                        stateName = "OH"
                     Case "Oklahoma"
-                        ws.Cells(i, "F").Value = "OK"
+                        stateName = "OK"
                     Case "Oregon"
-                        ws.Cells(i, "F").Value = "OR"
+                        stateName = "OR"
                     Case "Pennsylvania"
-                        ws.Cells(i, "F").Value = "PA"
+                        stateName = "PA"
                     Case "Rhode Island"
-                        ws.Cells(i, "F").Value = "RI"
+                        stateName = "RI"
                     Case "South Carolina"
-                        ws.Cells(i, "F").Value = "SC"
+                        stateName = "SC"
                     Case "South Dakota"
-                        ws.Cells(i, "F").Value = "SD"
+                        stateName = "SD"
                     Case "Tennessee"
-                        ws.Cells(i, "F").Value = "TN"
+                        stateName = "TN"
                     Case "Texas"
-                        ws.Cells(i, "F").Value = "TX"
+                        stateName = "TX"
                     Case "Utah"
-                        ws.Cells(i, "F").Value = "UT"
+                        stateName = "UT"
                     Case "Vermont"
-                        ws.Cells(i, "F").Value = "VT"
+                        stateName = "VT"
                     Case "Virginia"
-                        ws.Cells(i, "F").Value = "VA"
+                        stateName = "VA"
                     Case "Washington"
-                        ws.Cells(i, "F").Value = "WA"
+                        stateName = "WA"
                     Case "West Virginia"
-                        ws.Cells(i, "F").Value = "WV"
+                        stateName = "WV"
                     Case "Wisconsin"
-                        ws.Cells(i, "F").Value = "WI"
+                        stateName = "WI"
                     Case "Wyoming"
-                        ws.Cells(i, "F").Value = "WY"
+                        stateName = "WY"
                     Case Else
                         ' If the state is not in the list, do nothing or handle differently
                 End Select
                 
                 'if city name is longer than 18 charecters make it 18
                 'why 18? Because .?? is 3 charecters and 18+3 = 21
-                If (Len(ws.Cells(i, "e").Value)) > 18 Then
-                    ws.Cells(i, "e").Value = Left(ws.Cells(i, "e").Value, 18)
+                If Len(cityName) > 18 Then
+                    cityName = Left(cityName, 18)
                 End If
-                If Not IsEmpty(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "G").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value
+                If cityName <> "" Then
+                    ws.Cells(i, "G").Value = cityName + "." + stateName
+                Else
+                    ws.Cells(i, "G").Value = stateName
                 End If
                 
             'For UK
             Case "United Kingdom"
-                ws.Cells(i, "G").Value = "GB"
+                countryName = "GB"
                 
-                If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "G").Value
-                ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "G").Value
-                ElseIf (Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "G").Value
+                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                Else
+                    ws.Cells(i, "g").Value = countryName
                 End If
                 
             'For Thailand
             Case "Thailand"
-                ws.Cells(i, "G").Value = "TH"
+                countryName = "TH"
                 
-                If Not IsEmpty(ws.Cells(i, "f")) Then
-                ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
+                If stateName <> "" Then
+                    ws.Cells(i, "G").Value = stateName + "." + countryName
+                Else
+                    ws.Cells(i, "G").Value = countryName
                 End If
                 
             'For Bosnia Hercegovina
@@ -228,66 +237,70 @@ Sub DMRID()
                 
             'For Korea
             Case "Korea Republic of"
-                ws.Cells(i, "G").Value = "Korea"
+                countryName = "Korea"
                 
-                If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
-                ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "g").Value
-                ElseIf (Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
+                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                Else
+                    ws.Cells(i, "g").Value = countryName
                 End If
                 
             'For Canada
             Case "Canada"
-                ws.Cells(i, "G").Value = "CAN"
+                countryName = "CAN"
                 Select Case stateName
                     Case "Alberta"
-                        ws.Cells(i, "F").Value = "AB"
+                        stateName = "AB"
                     Case "British Columbia"
-                        ws.Cells(i, "F").Value = "BC"
+                        stateName = "BC"
                     Case "Manitoba"
-                        ws.Cells(i, "F").Value = "MB"
+                        stateName = "MB"
                     Case "New Brunswick"
-                        ws.Cells(i, "F").Value = "NB"
+                        stateName = "NB"
                     Case "Newfoundland"
-                        ws.Cells(i, "F").Value = "NL"
+                        stateName = "NL"
                     Case "Nova Scotia"
-                        ws.Cells(i, "F").Value = "NS"
+                        stateName = "NS"
                     Case "Ontario"
-                        ws.Cells(i, "F").Value = "ON"
+                        stateName = "ON"
                     Case "Prince Edward Island"
-                        ws.Cells(i, "F").Value = "PE"
+                        stateName = "PE"
                     Case "Quebec"
-                        ws.Cells(i, "F").Value = "QC"
+                        stateName = "QC"
                     Case "Saskatchewan"
-                        ws.Cells(i, "F").Value = "SK"
+                        stateName = "SK"
                     Case "Northwest Territories"
-                        ws.Cells(i, "F").Value = "NT"
+                        stateName = "NT"
                     Case "Nunavut"
-                        ws.Cells(i, "F").Value = "NU"
+                        stateName = "NU"
                     Case "Yukon"
-                        ws.Cells(i, "F").Value = "YT"
+                        stateName = "YT"
                     Case Else
                         ' If the state is not in the list, do nothing or handle differently
                 End Select
                 'if the city name is longer than 14 charecters make it 14
                 'why 14? Because .??.CAN is 7 charecters and 14+7 = 21
-                If (Len(ws.Cells(i, "e").Value)) > 14 Then
-                    ws.Cells(i, "e").Value = Left(ws.Cells(i, "e").Value, 14)
+                If Len(cityName) > 14 Then
+                    cityName = Left(cityName, 14)
                 End If
-                ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
+                ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
 
             
             'for the rest of the world
             Case Else
                 
-                If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
-                ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "g").Value
-                ElseIf (Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
+                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                Else
+                    ws.Cells(i, "g").Value = countryName
                 End If
                 
         End Select
