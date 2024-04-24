@@ -77,6 +77,9 @@ Sub DMRID()
         ' Get the value in column G and F
         countryName = ws.Cells(i, "G").Value
         stateName = ws.Cells(i, "F").Value
+        If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
+            ws.Cells(i, "e").Value = "Inv.City"
+        End If
         
         ' processing data based on the value in column G
         Select Case countryName
@@ -189,9 +192,7 @@ Sub DMRID()
                     Case Else
                         ' If the state is not in the list, do nothing or handle differently
                 End Select
-                If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "e").Value = "Inv.City"
-                End If
+                
                 'if city name is longer than 18 charecters make it 18
                 'why 18? Because .?? is 3 charecters and 18+3 = 21
                 If (Len(ws.Cells(i, "e").Value)) > 18 Then
@@ -204,12 +205,7 @@ Sub DMRID()
             'For UK
             Case "United Kingdom"
                 ws.Cells(i, "G").Value = "GB"
-                If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "e").Value = "Inv.City"
-                End If
-                If Not IsEmpty(ws.Cells(i, "f")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "f").Value = "Inv.State"
-                End If
+                
                 If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
                     ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "G").Value
                 ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
@@ -221,9 +217,7 @@ Sub DMRID()
             'For Thailand
             Case "Thailand"
                 ws.Cells(i, "G").Value = "TH"
-                If Not IsEmpty(ws.Cells(i, "f")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "f").Value = "Inv.State"
-                End If
+                
                 If Not IsEmpty(ws.Cells(i, "f")) Then
                 ws.Cells(i, "g").Value = ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
                 End If
@@ -235,12 +229,7 @@ Sub DMRID()
             'For Korea
             Case "Korea Republic of"
                 ws.Cells(i, "G").Value = "Korea"
-                If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "e").Value = "Inv.City"
-                End If
-                If Not IsEmpty(ws.Cells(i, "f")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "f").Value = "Inv.State"
-                End If
+                
                 If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
                     ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
                 ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
@@ -292,12 +281,7 @@ Sub DMRID()
             
             'for the rest of the world
             Case Else
-                If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                    ws.Cells(i, "e").Value = "Inv.City"
-                End If
-                If Not IsEmpty(ws.Cells(i, "f")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "f")) Then
-                    ws.Cells(i, "f").Value = "Inv.State"
-                End If
+                
                 If (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "f").Value) + Len(ws.Cells(i, "g").Value)) < 20 And Not IsEmpty(ws.Cells(i, "e")) And Not IsEmpty(ws.Cells(i, "f")) Then
                     ws.Cells(i, "g").Value = ws.Cells(i, "e").Value + "." + ws.Cells(i, "f").Value + "." + ws.Cells(i, "g").Value
                 ElseIf (Len(ws.Cells(i, "e").Value) + Len(ws.Cells(i, "g").Value)) < 21 And Not IsEmpty(ws.Cells(i, "e")) Then
