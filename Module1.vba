@@ -54,6 +54,7 @@ Sub DMRID()
     Dim countryName As String
     Dim stateName As String
     Dim cityName As String
+    Dim firstName As String
     Dim lencountryName As Integer
     Dim lenstateName As Integer
     Dim lencityName As Integer
@@ -324,18 +325,25 @@ Sub DMRID()
                 
         End Select
         'dealing with First_Name and Last_Name
-        If Not IsEmpty(ws.Cells(i, "c")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "C")) Then
-            ws.Cells(i, "c").Value = "Inv.F.Name"
+        If IsEmpty(ws.Cells(i, "c")) Then
+            firstName = ""
+            ElseIf Application.WorksheetFunction.IsText(ws.Cells(i, "c")) Then
+                firstName = ws.Cells(i, "c").Value
+                Else
+                    firstName = "Inv.F.Name"
+                    ws.Cells(i, "C").Value = "Inv.F.Name"
         End If
+        
         If Not IsEmpty(ws.Cells(i, "d")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "D")) Then
             ws.Cells(i, "D").Value = "Inv.L.Name"
         End If
-        'if First_Name is longer than 21 charecters make it 21
-        If (Len(ws.Cells(i, "C").Value)) > 21 Then
-            ws.Cells(i, "C").Value = Left(ws.Cells(i, "C").Value, 21)
-        End If
+        
+        'if First_Name is longer than 21 charecters make it 21 and delete lastname
+        If Len(firstName) > 21 Then
+            ws.Cells(i, "C").Value = Left(firstName, 21)
+            ws.Cells(i, "D").Value = ""
         'if First_Name + Last_Name is longer than one line, only disply First_Name
-        If (Len(ws.Cells(i, "C").Value) + Len(ws.Cells(i, "D").Value)) > 20 Then
+        ElseIf (Len(firstName) + Len(ws.Cells(i, "D").Value)) > 20 Then
             ws.Cells(i, "D").Value = ""
         End If
     Next i
