@@ -54,6 +54,9 @@ Sub DMRID()
     Dim countryName As String
     Dim stateName As String
     Dim cityName As String
+    Dim lencountryName As Integer
+    Dim lenstateName As Integer
+    Dim lencityName As Integer
     
     Application.ScreenUpdating = False
 
@@ -78,11 +81,14 @@ Sub DMRID()
         ' Get the value in column G and F
         countryName = ws.Cells(i, "G").Value
         stateName = ws.Cells(i, "F").Value
-        If Not IsEmpty(ws.Cells(i, "e")) And Not Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-            ws.Cells(i, "e").Value = "Inv.City"
-        End If
-        cityName = ws.Cells(i, "e").Value
         
+        If IsEmpty(ws.Cells(i, "e")) Then
+            cityName = ""
+            ElseIf Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
+                cityName = ws.Cells(i, "e").Value
+                Else
+                    cityName = "Inv.City"
+        End If
         
         ' processing data based on the value in column G
         Select Case countryName
@@ -256,11 +262,14 @@ Sub DMRID()
             Case "United Kingdom"
                 countryName = "GB"
                 
-                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                lencountryName = Len(countryName)
+                lenstateName = Len(stateName)
+                lencityName = Len(cityName)
+                If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
-                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + countryName
-                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
                     ws.Cells(i, "g").Value = stateName + "." + countryName
                 Else
                     ws.Cells(i, "g").Value = countryName
@@ -284,11 +293,14 @@ Sub DMRID()
             Case "Korea Republic of"
                 countryName = "Korea"
                 
-                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                lencountryName = Len(countryName)
+                lenstateName = Len(stateName)
+                lencityName = Len(cityName)
+                If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
-                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + countryName
-                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
                     ws.Cells(i, "g").Value = stateName + "." + countryName
                 Else
                     ws.Cells(i, "g").Value = countryName
@@ -297,11 +309,14 @@ Sub DMRID()
             'for the rest of the world
             Case Else
                 
-                If (Len(cityName) + Len(stateName) + Len(countryName)) < 20 And cityName <> "" And stateName <> "" Then
+                lencountryName = Len(countryName)
+                lenstateName = Len(stateName)
+                lencityName = Len(cityName)
+                If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
-                ElseIf (Len(cityName) + Len(countryName)) < 21 And cityName <> "" Then
+                ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
                     ws.Cells(i, "g").Value = cityName + "." + countryName
-                ElseIf (Len(stateName) + Len(countryName)) < 21 And stateName <> "" Then
+                ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
                     ws.Cells(i, "g").Value = stateName + "." + countryName
                 Else
                     ws.Cells(i, "g").Value = countryName
