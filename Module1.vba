@@ -283,8 +283,6 @@ Sub DMRID()
                 
                 If stateName <> "" Then
                     ws.Cells(i, "G").Value = stateName + "." + countryName
-                ElseIf cityName <> "" Then
-                    ws.Cells(i, "G").Value = cityName + "." + countryName
                 Else
                     ws.Cells(i, "G").Value = countryName
                 End If
