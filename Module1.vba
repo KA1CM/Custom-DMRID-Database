@@ -44,7 +44,7 @@ Sub GETFromURL()
         MsgBox "Failed to download file from: " & URL
         Exit Sub
     End If
-    Worksheets("user").Columns("A:G").AutoFit
+    'Worksheets("user").Columns("A:G").AutoFit
 End Sub
 
 Sub DMRID()
@@ -79,10 +79,11 @@ Sub DMRID()
     
     ' Loop through each row
     For i = 1 To lastRow
-        ' Get the value in column G and F
+        ' Get the value in column G, F and E
         countryName = ws.Cells(i, "G").Value
         stateName = ws.Cells(i, "F").Value
         
+        'some people put weird data in column e, we have to filter that out
         If IsEmpty(ws.Cells(i, "e")) Then
             cityName = ""
             ElseIf Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
@@ -282,6 +283,8 @@ Sub DMRID()
                 
                 If stateName <> "" Then
                     ws.Cells(i, "G").Value = stateName + "." + countryName
+                ElseIf cityName <> "" Then
+                    ws.Cells(i, "G").Value = cityName + "." + countryName
                 Else
                     ws.Cells(i, "G").Value = countryName
                 End If
@@ -290,9 +293,46 @@ Sub DMRID()
             Case "Bosnia and Hercegovina"
                 ws.Cells(i, "G").Value = "Bosnia.Hercegovina"
                 
+            'For Trinidad and Tobago
+            Case "Trinidad and Tobago"
+                'doing nothing
+            
+            'For U.S. Virgin Islands
+            Case "U.S. Virgin Islands"
+                ws.Cells(i, "G").Value = "U.S.Virgin.Islands"
+                
+            'For United Arab Emirates
+            Case "United Arab Emirates"
+                countryName = "UAE"
+                
+                If stateName <> "" Then
+                    ws.Cells(i, "G").Value = stateName + "." + countryName
+                ElseIf cityName <> "" Then
+                    ws.Cells(i, "G").Value = cityName + "." + countryName
+                Else
+                    ws.Cells(i, "G").Value = countryName
+                End If
+                
             'For Korea
             Case "Korea Republic of"
                 countryName = "Korea"
+                
+                lencountryName = Len(countryName)
+                lenstateName = Len(stateName)
+                lencityName = Len(cityName)
+                If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
+                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
+                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                Else
+                    ws.Cells(i, "g").Value = countryName
+                End If
+                
+            'For Argentina Republic
+            Case "Argentina Republic"
+                countryName = "Argentina"
                 
                 lencountryName = Len(countryName)
                 lenstateName = Len(stateName)
@@ -324,6 +364,7 @@ Sub DMRID()
                 End If
                 
         End Select
+        
         'dealing with First_Name and Last_Name
         If IsEmpty(ws.Cells(i, "c")) Then
             firstName = ""
