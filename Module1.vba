@@ -397,6 +397,7 @@ Sub DMRID()
     Columns("E:F").Delete
     
     'make the sheet presentable
+    Range("E1").Value = "QTH"
     Cells(1, 1).Select
     Application.ScreenUpdating = True
     Worksheets("user").Columns("A:B").AutoFit
