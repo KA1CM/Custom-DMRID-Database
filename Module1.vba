@@ -283,6 +283,9 @@ Sub DMRID()
             Case "Thailand"
                 countryName = "TH"
                 
+                If stateName = "Phra Nakhon Si Ayutthaya" Then
+                    stateName = "Ayutthaya"
+                End If
                 If stateName <> "" Then
                     ws.Cells(i, "G").Value = stateName + "." + countryName
                 Else
@@ -308,6 +311,9 @@ Sub DMRID()
                 If stateName <> "" Then
                     ws.Cells(i, "G").Value = stateName + "." + countryName
                 ElseIf cityName <> "" Then
+                    If Len(cityName) > 17 Then
+                        cityName = Left(cityName, 17)
+                    End If
                     ws.Cells(i, "G").Value = cityName + "." + countryName
                 Else
                     ws.Cells(i, "G").Value = countryName
