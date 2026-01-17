@@ -69,30 +69,30 @@ Sub DMRID()
     SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
     ReplaceFormat:=False
     
-    Columns("F:F").Select
+    Columns("E:E").Select
     Selection.Replace What:="All Regions", Replacement:="", LookAt:=xlWhole, _
     SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
     ReplaceFormat:=False
     
-    ' Find the last row with data in column G
-    lastRow = ws.Cells(ws.Rows.Count, "G").End(xlUp).Row
+    ' Find the last row with data in column F
+    lastRow = ws.Cells(ws.Rows.Count, "F").End(xlUp).Row
     
     ' Loop through each row
     For i = 1 To lastRow
-        ' Get the value in column G, F and E
-        countryName = ws.Cells(i, "G").Value
-        stateName = ws.Cells(i, "F").Value
+        ' Get the value in column F, E and D
+        countryName = ws.Cells(i, "F").Value
+        stateName = ws.Cells(i, "E").Value
         
-        'some people put weird data in column e, we have to filter that out
-        If IsEmpty(ws.Cells(i, "e")) Then
+        'some people put weird data in column D, we have to filter that out
+        If IsEmpty(ws.Cells(i, "D")) Then
             cityName = ""
-            ElseIf Application.WorksheetFunction.IsText(ws.Cells(i, "e")) Then
-                cityName = ws.Cells(i, "e").Value
+            ElseIf Application.WorksheetFunction.IsText(ws.Cells(i, "D")) Then
+                cityName = ws.Cells(i, "D").Value
                 Else
                     cityName = "Inv.City"
         End If
         
-        ' processing data based on the value in column G
+        ' processing data based on the countryName
         Select Case countryName
         
             'For US
@@ -212,9 +212,9 @@ Sub DMRID()
                     If Len(cityName) > 18 Then
                         cityName = Left(cityName, 18)
                     End If
-                    ws.Cells(i, "G").Value = cityName + "." + stateName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName
                 Else
-                    ws.Cells(i, "G").Value = stateName
+                    ws.Cells(i, "F").Value = stateName
                 End If
                 
             'For Canada
@@ -257,9 +257,9 @@ Sub DMRID()
                     If Len(cityName) > 14 Then
                         cityName = Left(cityName, 14)
                     End If
-                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName + "." + countryName
                 Else
-                    ws.Cells(i, "G").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 End If
                 
             'For UK
@@ -270,13 +270,13 @@ Sub DMRID()
                 lenstateName = Len(stateName)
                 lencityName = Len(cityName)
                 If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName + "." + countryName
                 ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + countryName
                 ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
-                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 Else
-                    ws.Cells(i, "g").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
                 
             'For Thailand
@@ -287,14 +287,14 @@ Sub DMRID()
                     stateName = "Ayutthaya"
                 End If
                 If stateName <> "" Then
-                    ws.Cells(i, "G").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 Else
-                    ws.Cells(i, "G").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
                 
             'For Bosnia Hercegovina
             Case "Bosnia and Hercegovina"
-                ws.Cells(i, "G").Value = "Bosnia.Hercegovina"
+                ws.Cells(i, "F").Value = "Bosnia.Hercegovina"
                 
             'For Trinidad and Tobago
             Case "Trinidad and Tobago"
@@ -302,21 +302,21 @@ Sub DMRID()
             
             'For U.S. Virgin Islands
             Case "U.S. Virgin Islands"
-                ws.Cells(i, "G").Value = "U.S.Virgin.Islands"
+                ws.Cells(i, "F").Value = "U.S.Virgin.Islands"
                 
             'For United Arab Emirates
             Case "United Arab Emirates"
                 countryName = "UAE"
                 
                 If stateName <> "" Then
-                    ws.Cells(i, "G").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 ElseIf cityName <> "" Then
                     If Len(cityName) > 17 Then
                         cityName = Left(cityName, 17)
                     End If
-                    ws.Cells(i, "G").Value = cityName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + countryName
                 Else
-                    ws.Cells(i, "G").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
                 
             'For Korea
@@ -327,13 +327,13 @@ Sub DMRID()
                 lenstateName = Len(stateName)
                 lencityName = Len(cityName)
                 If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName + "." + countryName
                 ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + countryName
                 ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
-                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 Else
-                    ws.Cells(i, "g").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
                 
             'For Argentina Republic
@@ -344,13 +344,13 @@ Sub DMRID()
                 lenstateName = Len(stateName)
                 lencityName = Len(cityName)
                 If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName + "." + countryName
                 ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + countryName
                 ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
-                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 Else
-                    ws.Cells(i, "g").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
             
             'for the rest of the world
@@ -360,13 +360,13 @@ Sub DMRID()
                 lenstateName = Len(stateName)
                 lencityName = Len(cityName)
                 If (lencityName + lenstateName + lencountryName) < 20 And cityName <> "" And stateName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + stateName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + stateName + "." + countryName
                 ElseIf (lencityName + lencountryName) < 21 And cityName <> "" Then
-                    ws.Cells(i, "g").Value = cityName + "." + countryName
+                    ws.Cells(i, "F").Value = cityName + "." + countryName
                 ElseIf (lenstateName + lencountryName) < 21 And stateName <> "" Then
-                    ws.Cells(i, "g").Value = stateName + "." + countryName
+                    ws.Cells(i, "F").Value = stateName + "." + countryName
                 Else
-                    ws.Cells(i, "g").Value = countryName
+                    ws.Cells(i, "F").Value = countryName
                 End If
                 
         End Select
@@ -396,17 +396,17 @@ Sub DMRID()
         End If
     Next i
     
-    'remove remaining (space) from column G
-    Columns("G:G").Select
+    'remove remaining (space) from column F
+    Columns("F:F").Select
         Selection.Replace What:=" ", Replacement:=".", LookAt:=xlPart, _
         SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
         ReplaceFormat:=False
         
-    'we no longer need column D, E, and F
-    Columns("D:F").Delete
+    'we no longer need column D, and E
+    Columns("D:E").Delete
     
     'make the sheet presentable
-    Range("D1").Value = "QTH"
+    Range("C1").Value = "QTH"
     Cells(1, 1).Select
     Application.ScreenUpdating = True
     Worksheets("user").Columns("A:B").AutoFit
