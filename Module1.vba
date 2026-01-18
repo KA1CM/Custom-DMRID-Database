@@ -63,6 +63,9 @@ Sub DMRID()
 
     Set ws = ThisWorkbook.Sheets("user")
     
+    '2026-01-18 RadioID.net change the structure of their user.csv Column D is Fname, and E is Surname. We only need column C NAME
+    Columns("D:E").Delete
+    
     'remove nonsense data
     Columns("C:F").Select
     Selection.Replace What:="None", Replacement:="", LookAt:=xlWhole, _
